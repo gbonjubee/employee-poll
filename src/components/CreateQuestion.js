@@ -4,9 +4,9 @@ import {useEffect, useState} from "react"
 import { useNavigate } from "react-router-dom";
 
 
-const CreateQuestion = ({dispatch, props}) => {
+const CreateQuestion = (props) => {
     const navigate = useNavigate();
-    
+    const { authedUser } = props;
     const [optionA, setOptionA] = useState("");
     const [optionB, setOptionB] = useState("");
     const [disabled,setDisabled] = useState(true)
@@ -18,7 +18,7 @@ const CreateQuestion = ({dispatch, props}) => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        dispatch(handleAddQuestion({optionA, optionB}));
+        props.dispatch(handleAddQuestion({optionA, optionB, authedUser}));
         
         console.log("optionA: ", optionA);
         console.log("optionB: ", optionB);

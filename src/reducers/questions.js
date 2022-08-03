@@ -1,7 +1,7 @@
 import { CREATE_QUESTION, ANSWER_QUESTION, RECEIVE_QUESTIONS } from "../actions/questions";
 
 const QUESTION = (state = {}, action) => {
-    console.log(action)
+    console.log("Question" + action);
     switch(action.type){
         case RECEIVE_QUESTIONS:
             return {

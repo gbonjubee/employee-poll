@@ -12,11 +12,15 @@ export function createQuestion(question){
     };
 }
 
-
 export function handleAddQuestion(question) {
+    const {optionA, optionB, authedUser} = question;
     return (dispatch) => {
       dispatch(showLoading());
-      return saveQuestion(question)
+      return saveQuestion({
+        optionOneText: optionA,
+        optionTwoText: optionB,
+        author: authedUser
+      })
         .then((question) => dispatch(createQuestion(question)))
         .then(() => dispatch(hideLoading()));
     };
