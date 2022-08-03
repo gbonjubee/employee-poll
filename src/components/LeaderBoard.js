@@ -21,7 +21,7 @@ return (
           {employeesList.map((employee) => {
             return (
               <tr key={employee.id}>
-                <td>{employee.name}</td>
+                <td> <img src={employee.avatarURL} alt={employee.name} height="40" width="50"/>{employee.name} </td>
                 <td>{Object.keys(employee.answers).length}</td>
                 <td>{employee.questions.length}</td>
               </tr>
