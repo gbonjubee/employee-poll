@@ -18,9 +18,6 @@ const Nav = (props) => {
   return (
     <nav className="nav">
       <ul>
-      <li onClick={logout}>
-          <Link to="/login">Login</Link>
-        </li>
         <li>
           <Link to="/">Home</Link>
         </li>
@@ -30,14 +27,11 @@ const Nav = (props) => {
         <li>
           <Link to="/leaderboard">LeaderBoard</Link>
         </li>
+            
+        <li onClick={logout}> <Link to="/login">Logout</Link></li>
         <li >
-          <img src={avatarURL} alt={name} height="40" width="50"/></li> authedUser === null ? (
-        <li onClick={logout}>
-          <Link to="/login">Logout</Link>
-          </li>
-        ) : 
-        <li onClick={logout}>
-          <Link to="/login">Login</Link>
+          <img src={avatarURL} alt={name} height="40" width="50"/>
+          {name}
           </li>
       </ul>
     </nav>

@@ -52,7 +52,7 @@ const AnswerQuestion = (props) => {
                     <button className="btn" type="submit" >Submit </button>
                     <br /><br />
                 </div>
-                <h2>Author {`${name}`} </h2>
+                <h2>Poll By: {`${name}`} </h2>
             </form>
         </div>
     );
