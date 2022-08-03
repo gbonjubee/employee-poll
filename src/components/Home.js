@@ -27,10 +27,9 @@ const Dashboard = (props) => {
 
   return (
     <div>
-     
       <div className="questions_list">
         <h2 className="title">Answered Polls</h2>
-        <button onClick={showAnsweredQuestions} >Show</button>
+        <button onClick={showAnsweredQuestions} >View Polls</button>
         <div className="answered_questions">
           {activeAnswered ? (
             answeredQuestions.length === 0 ? (
@@ -43,7 +42,7 @@ const Dashboard = (props) => {
           ) : null}
         </div>
         <h2 className="title">Unanswered Polls</h2>
-        <button onClick={showUnAnsweredQuestions}>Show</button>
+        <button onClick={showUnAnsweredQuestions}>View Polls</button>
         <div className="unanswered_questions">
 
           {activeUnAnswered ? (

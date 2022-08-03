@@ -56,14 +56,6 @@ const AnswerQuestion = (props) => {
             </form>
         </div>
     );
-
-    /* } catch {
-        return (
-        <div className={styles.notFound}>
-            <h1 className={styles.sorry} >Sorry! The question you are looking for does not exist.</h1>
-        </div>
-        )
-    } */
 }
 
 const mapStateToProps = ({ authedUser, users }) => {
