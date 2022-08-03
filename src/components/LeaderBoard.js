@@ -14,7 +14,7 @@ return (
         <div >
         <table>
           <tr>
-            <th>employeesList</th>
+            <th>EmployeesList</th>
             <th>Answered Poll Count</th>
             <th>Created Polls</th>
           </tr>
