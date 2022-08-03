@@ -1,0 +1,25 @@
+ul{  
+    padding:0;  
+    background: black;  
+    font-family:Arial, sans serif;  
+    font-size:12px;  
+    text-transform:uppercase;
+}
+
+li{  
+    display:inline-block;
+}
+
+a{  
+    display:block;  
+    padding:10px; 
+    color: white;
+}
+
+.user-image{
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    overflow: visible;
+    margin-top: 0;
+}

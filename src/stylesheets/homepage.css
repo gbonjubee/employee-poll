@@ -1,0 +1,44 @@
+.questions_list {
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    list-style-type: none;
+    flex-wrap: none;
+}
+
+.answered_questions {
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+
+}
+
+.title {
+    margin: auto;
+}
+
+.unanswered_questions {
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+li{  
+    display:inline-block;
+}
+
+.question_listitems{  
+    display:block;  
+    padding:10px; 
+    background-color: gray;
+}
+
+.showButton{
+    color: gray;
+}

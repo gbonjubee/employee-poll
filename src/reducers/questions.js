@@ -1,18 +1,19 @@
-import { CREATE_POLL, ANSWER_POLL, FETCH_POLLS } from "../actions/questions";
+import { CREATE_QUESTION, ANSWER_QUESTION, RECEIVE_QUESTIONS } from "../actions/questions";
 
-const createPoll = (state = {}, action) => {
+const QUESTION = (state = {}, action) => {
+    console.log(action)
     switch(action.type){
-        case FETCH_POLLS:
+        case RECEIVE_QUESTIONS:
             return {
                 ...state,
                 ...action.questions,
             }
-        case CREATE_POLL:
+        case CREATE_QUESTION:
             return {
                 ...state,
                 [action.question.id]: action.question,
             };
-        case ANSWER_POLL:
+        case ANSWER_QUESTION:
                 return {
                   ...state,
                   [action.id]: {
@@ -26,5 +27,6 @@ const createPoll = (state = {}, action) => {
          default:
             return state;
     }
-
 }
+
+export default QUESTION;
