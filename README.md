@@ -10,12 +10,11 @@ This project is a web app that lets an employee create polls for coworkers and g
 
  4. Users can create new polls
 
- 5. users can respond to poll 
-    ## TODO (Functinality needs some fix )
+ ### TODO  Users can respond to poll (Functinality needs some fix )
 
 
 ### Testing
-   ## TODO Add tests with Jest
+   ### TODO Add tests with Jest
 
 ### Install dependencies 
 
