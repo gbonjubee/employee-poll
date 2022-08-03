@@ -25,8 +25,8 @@ const App = (props) => {
     <Routes>
       <Route path="/login" exact element={<Login />}/>
       <Route path="/" exact element={<Home />}/>
-      <Route path="/question" exact element={<Createquestion />}/>
-      <Route path="/questions/:id" exact element={<AnswerQuestion />}/>
+      <Route path="/add" exact element={<Createquestion />}/>
+      <Route path="/questions/:question_id" exact element={<AnswerQuestion />}/>
       <Route path="/leaderboard" exact element={<Leaderboard/>}/>
     </Routes>
     </div>
