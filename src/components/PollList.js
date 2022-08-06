@@ -3,7 +3,7 @@ import { Link } from "react-router-dom"
 
  const formatQuestion = (question, author) =>{
     const {id, optionOne, optionTwo, timestamp, } = question;
-    const {name,avatarURL } = author;
+    const {name, avatarURL } = author;
     return {
         name,
         id, 
@@ -18,6 +18,8 @@ import { Link } from "react-router-dom"
 
 const Question = (props) => {
     const timestamp = props.question.timestamp
+    const name =props.question.name;
+    const avatarURL =props.question.avatar;
     const date = new Date(timestamp);
     const link = `/questions/${props.id}`
     const stateData =  {
@@ -27,7 +29,8 @@ const Question = (props) => {
     
     return (
         <Link to={link} state={{ currentQuestion: stateData }}>
-            <h4 data-testid="header-element">{props.question.name}</h4>
+            <img src={avatarURL} alt={name} height="40" width="50"/>
+            <h4 data-testid="header-element">{name}</h4>
             <p data-testid="date-element">{"Date: " + date.getDate() +
                 "/" + (date.getMonth() + 1) +
                 "/" + date.getFullYear()
@@ -44,8 +47,6 @@ const mapStateToProps = ({ authedUser, users, questions }, { id }) => {
             authedUser,
             question: question ?
                 formatQuestion(question, users[question.author]) : null,
-            // What is the peace of state in the store, this component cares about? --> tweets
-            // What will show up as a property on this container
         }
     )
 }

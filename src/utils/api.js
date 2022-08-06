@@ -14,6 +14,3 @@ import * as data from "./_DATA.js";
   export function saveQuestionAnswer(answer) {
     return data._saveQuestionAnswer(answer);
   }
-
-  
-

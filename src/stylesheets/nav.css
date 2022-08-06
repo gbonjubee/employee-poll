@@ -1,6 +1,6 @@
 ul{  
     padding:0;  
-    background: grey;  
+    background: #01d28e;  
     font-family:Arial, sans serif;  
     font-size:12px;  
     text-transform:uppercase;
@@ -13,7 +13,7 @@ li{
 a{  
     display:block;  
     padding:10px; 
-    color: black;
+    color: white;
 }
 
 .user-image{

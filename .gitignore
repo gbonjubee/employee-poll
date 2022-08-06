@@ -6,8 +6,11 @@ package-lock.json
 /.pnp
 .pnp.js
 
+
 # testing
 /coverage
+# snapshots
+src/test/__snapshots__/
 
 # production
 /build

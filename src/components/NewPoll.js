@@ -1,33 +1,26 @@
 import { connect } from "react-redux";
 import {handleAddQuestion} from "../actions/questions"
-import {useEffect, useState} from "react"
 import { useNavigate } from "react-router-dom";
-
+import { useState } from "react";
 
 const CreateQuestion = (props) => {
-    const navigate = useNavigate();
-    const { authedUser } = props;
     const [optionA, setOptionA] = useState("");
     const [optionB, setOptionB] = useState("");
-    const [disabled,setDisabled] = useState(true)
-
-
-    useEffect(() => {
-        optionA.length > 0 && optionB.length > 0 ? setDisabled(false) : setDisabled(true)
-    },[optionA,optionB])
+    const navigate = useNavigate();
+    const { authedUser } = props;
+    if (!authedUser) return;
+   
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        props.dispatch(handleAddQuestion({optionA, optionB, authedUser}));
-        
-        console.log("optionA: ", optionA);
-        console.log("optionB: ", optionB);
-    
-        setOptionA("");
-        setOptionB("");
-        alert("Poll created Successfully");
-        setTimeout(() => navigate("/"), 1000); 
-      };
+        if (!optionA || !optionB) {
+            alert("Please enter first and second option before you submit.")
+        } else {
+            props.dispatch(handleAddQuestion({ optionA, optionB, authedUser }));
+            alert("Poll created Successfully");
+            navigate("/");
+        }
+    };
       return (
         <div>
         <h2>Would you rather</h2>
@@ -40,7 +33,7 @@ const CreateQuestion = (props) => {
 			<input data-testid="input-field-two" type="OptionTwo" placeholder="Second Option" onChange={(e) => setOptionB(e.target.value)} ></input>
 			
             <br />
-            <button className="btn" type="submit" disabled={disabled}>
+            <button className="btn" type="submit">
           Submit
         </button>
         </form>

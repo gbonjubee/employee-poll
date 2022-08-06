@@ -1,19 +1,22 @@
 import { Link } from "react-router-dom";
-import {handleUserLogin} from "../actions/shared"
+import { handleUserLogin } from "../actions/authedUser"
 import { useNavigate } from "react-router-dom";
 import "../stylesheets/nav.css"
 import { connect } from "react-redux";
 
 const Nav = (props) => {
   const navigate = useNavigate();
-  
-  const {authedUser, users} = props;
+  const { authedUser, users } = props;
+  if (!users || !users[authedUser]) return;
+
+  const avatarURL = users[authedUser].avatarURL;
+  const name = users[authedUser].name;
+
   const logout = () => {
-       props.dispatch(handleUserLogin(null));
-      navigate("/login");
-    };
-    const avatarURL = users[authedUser].avatarURL;
-    const name = users[authedUser].name;
+    props.dispatch(handleUserLogin(null));
+    navigate("/login");
+  };
+ 
 
   return (
     <nav className="nav">
@@ -27,12 +30,12 @@ const Nav = (props) => {
         <li>
           <Link to="/leaderboard">LeaderBoard</Link>
         </li>
-            
+
         <li onClick={logout}> <Link to="/login">Logout</Link></li>
         <li >
-          <img src={avatarURL} alt={name} height="40" width="50"/>
-          {name}
-          </li>
+          <img src={avatarURL} alt={name} height="40" width="50" />
+          <b>{name}</b>
+        </li>
       </ul>
     </nav>
   );

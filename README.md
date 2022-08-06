@@ -1,6 +1,7 @@
 ### employeepoll
 
-This project is a web app that lets an employee create polls for coworkers and get feedback.
+This project is a web app that lets an employee create polls for coworkers and get and also give responses.
+
 ### Usages
  1. Users can  impersonate/ login as an existing user
 
@@ -10,18 +11,19 @@ This project is a web app that lets an employee create polls for coworkers and g
 
  4. Users can create new polls
 
- ### TODO  Users can respond to poll (Functinality needs some fix )
-
+ 5. Users can respond to poll
 
 ### Testing
-   ### TODO Add tests with Jest
+The tests are implemented using jest together with react testing libraries . To run the test simple run the command below.
+   `npm test`
 
-### Install dependencies 
+### Installing  dependencies 
+All dependencies needed to run this application are listed in `package.json` file. Please use the command below to install them.
 
 Run `npm install`
 
-### Starting the api
+### Starting the app
 
-Run `npm run start`
+Run `npm start`
 
 - Application will be running at http://localhost:3000

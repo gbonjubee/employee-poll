@@ -7,8 +7,8 @@ import Leaderboard from "./LeaderBoard"
 import Nav from "./Nav";
 import LoadingBar  from "react-redux-loading-bar";
 import Home from "./Home";
-import Createquestion from "./CreateQuestion";
-import AnswerQuestion  from "./AnswerQuestion";
+import Poll from "./Poll";
+import NewPoll from "./NewPoll";
 
 
 const App = (props) => {
@@ -25,8 +25,8 @@ const App = (props) => {
     <Routes>
       <Route path="/login" exact element={<Login />}/>
       <Route path="/" exact element={<Home />}/>
-      <Route path="/add" exact element={<Createquestion />}/>
-      <Route path="/questions/:question_id" exact element={<AnswerQuestion />}/>
+      <Route path="/add" exact element={<NewPoll />}/>
+      <Route path="/questions/:question_id" exact element={<Poll />}/>
       <Route path="/leaderboard" exact element={<Leaderboard/>}/>
     </Routes>
     </div>

@@ -1,7 +1,6 @@
 import { CREATE_QUESTION, ANSWER_QUESTION, RECEIVE_QUESTIONS } from "../actions/questions";
 
 const QUESTION = (state = {}, action) => {
-    console.log("Question" + action);
     switch(action.type){
         case RECEIVE_QUESTIONS:
             return {
@@ -14,13 +13,15 @@ const QUESTION = (state = {}, action) => {
                 [action.question.id]: action.question,
             };
         case ANSWER_QUESTION:
+            const { qid, answer, authedUser } = action;
                 return {
                   ...state,
-                  [action.id]: {
-                    ...state[action.id],
-                    [action.answer]: {
-                      ...state[action.id][action.answer],
-                      votes: state[action.id][action.answer].votes.concat([action.authedUser]),
+                  [qid]: {
+                    ...state[qid],
+                    [answer]: {
+                      ...state[qid][answer],
+                      votes: state[qid][answer].votes.concat([authedUser]),
+
                     },
                   },
             };   

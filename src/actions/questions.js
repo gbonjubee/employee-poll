@@ -1,5 +1,6 @@
 import { saveQuestion, saveQuestionAnswer } from "../utils/api";
 import { showLoading, hideLoading } from "react-redux-loading-bar";
+import { addQuestionToUser, addUsersAnswer } from "./users";
 
 export const CREATE_QUESTION = "CREATE_QUESTION"
 export const ANSWER_QUESTION = "ANSWER_QUESTION"
@@ -20,41 +21,44 @@ export function handleAddQuestion(question) {
         optionOneText: optionA,
         optionTwoText: optionB,
         author: authedUser
-      })
-        .then((question) => dispatch(createQuestion(question)))
+      }).then((data) => {
+        dispatch(createQuestion(data));
+        dispatch(addQuestionToUser(data));
+        })
         .then(() => dispatch(hideLoading()));
     };
   }
 
 
-export function answerQuestion({qid, answer, authuser}){
+export function answerQuestion({qid, answer, authedUser}){
     return{
         type: ANSWER_QUESTION,
         qid,
         answer,
-        authuser,
+        authedUser,
     };
 }
 
-export function handleAnswerQuestion({qid, answer}){
-    return (dispatch, getState) => {
-        const { authedUser } = getState();
+export function handleAnswerQuestion({qid, answer, authedUser}){
+    return (dispatch) => {
         dispatch(showLoading());
 
         return saveQuestionAnswer({
             authedUser,
             qid, 
-            answer 
+            answer,
         })
-        .then(dispatch(answerQuestion({qid, answer, authedUser})))
-        .then(() => dispatch(hideLoading()));
+        .then(dispatch(answerQuestion({ qid, answer, authedUser})))
+        .then(dispatch(addUsersAnswer({ qid, answer, authedUser })))
+        .then(dispatch(hideLoading()));
     };
 }
 
 
-export function receiveQuestions(questions){
+export function receiveQuestions(questions, authedUser){
     return {
         type: RECEIVE_QUESTIONS,
-        questions
+        questions,
+        authedUser
     }
 };

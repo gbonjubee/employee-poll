@@ -1,14 +1,8 @@
-import { setAuthedUser } from "./authedUser";
 import { receiveUsers } from "./users";
 import { receiveQuestions } from "./questions"
 import { showLoading, hideLoading } from "react-redux-loading-bar";
 import { getInitialData } from "../utils/api";
 
-export const handleUserLogin = (AUTHED_ID) => {
-    return (dispatch) => {
-      dispatch(setAuthedUser(AUTHED_ID))
-    }
-}
   
 export function handleInitialData() {
     return (dispatch) => {

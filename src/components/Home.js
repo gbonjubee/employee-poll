@@ -1,26 +1,41 @@
 import { connect } from "react-redux";
-import Questions from "./Questions";
+import PollList from "./PollList";
 import "../stylesheets/homepage.css"
 import { useState } from "react";
 
 
 const Dashboard = (props) => {
-  const answeredQuestions = props.questionIds.filter(id =>
-    props.users[props.authedUser].answers.hasOwnProperty(id))
-
-  const unAnsweredQuestions = props.questionIds.filter(id =>
-    props.users[props.authedUser].answers.hasOwnProperty(id) === false)
-
+ 
+  const {authedUser, users, questions} = props;
+  const questionList =  Object.keys(questions).sort((a, b) => questions[b].timestamp - questions[a].timestamp);
+  const answeredQuestions = questionList.filter(id => users[authedUser].answers[id]);
+  const unAnsweredQuestions = questionList.filter(id => !users[authedUser].answers[id]);
   const [activeAnswered, setActiveAnswered] = useState(false)
   const [activeUnAnswered, setActiveUnAnswered] = useState(true)
 
-
   const showAnsweredQuestions = () => {
-    activeAnswered ? setActiveAnswered(false) : setActiveAnswered(true)
+    if (activeAnswered) {
+      setActiveAnswered(false);
+    }
+    else {
+      setActiveAnswered(true);
+      setActiveUnAnswered(false);
+    }
   }
 
   const showUnAnsweredQuestions = () => {
-    activeUnAnswered ? setActiveUnAnswered(false) : setActiveUnAnswered(true)
+    if (activeUnAnswered) {
+      setActiveUnAnswered(false);
+
+    } else {
+      setActiveUnAnswered(true);
+      setActiveAnswered(false);
+    }
+  }
+
+  const showAllQuestions = () => {
+    setActiveAnswered(true);
+    setActiveUnAnswered(true);
   }
 
 
@@ -28,21 +43,20 @@ const Dashboard = (props) => {
   return (
     <div>
       <div className="questions_list">
-        <h2 className="title">Answered Polls</h2>
-        <button onClick={showAnsweredQuestions} >View Polls</button>
+      <button onClick={showAllQuestions} ><b>Show All Polls</b></button>
+        <button onClick={showAnsweredQuestions} ><b>Show Answered Polls</b></button>
         <div className="answered_questions">
           {activeAnswered ? (
             answeredQuestions.length === 0 ? (
               <h3 className="no_polls">No polls available.</h3>
             ) : (answeredQuestions.map(question => (
               <li key={question} className="question_listitems" >
-                <Questions id={question} />
+                <PollList  id={question}/>
               </li>
             )))
           ) : null}
         </div>
-        <h2 className="title">Unanswered Polls</h2>
-        <button onClick={showUnAnsweredQuestions}>View Polls</button>
+        <button onClick={showUnAnsweredQuestions}><b>Show Unanswered Polls</b></button>
         <div className="unanswered_questions">
 
           {activeUnAnswered ? (
@@ -50,7 +64,7 @@ const Dashboard = (props) => {
               <h3 className="no_polls">No polls available.</h3>
             ) : (unAnsweredQuestions.map(question => (
               <li key={question} className="question_listitems">
-                <Questions id={question} />
+                <PollList id={question}/>
               </li>
             )))
           ) : null}
@@ -62,9 +76,6 @@ const Dashboard = (props) => {
 
 const mapStateToProps = ({ questions, authedUser, users }) => {
   return ({
-    questionIds: Object.keys(questions).sort((a, b) =>
-      questions[b].timestamp - questions[a].timestamp
-    ),
     authedUser,
     users,
     questions,
