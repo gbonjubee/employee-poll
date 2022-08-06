@@ -16,6 +16,7 @@ const CreateQuestion = (props) => {
         if (!optionA || !optionB) {
             alert("Please enter first and second option before you submit.")
         } else {
+            
             props.dispatch(handleAddQuestion({ optionA, optionB, authedUser }));
             alert("Poll created Successfully");
             navigate("/");

@@ -34,13 +34,13 @@ const AnswerQuestion = (props) => {
             authedUser: authedUser
         }))
        alert(" Your answer has been successfully submitted ");
-       setTimeout(() => navigate("/"), 2000); 
+       navigate("/");
 
     }
 
     const calculateVotePercentage = (currentOptionVoteCount) => {
-        if (currentOptionVoteCount <1) return "0% ";
-        const totalVotes = optionOne.votes.length + optionTwo.votes.length + 1;
+        if (currentOptionVoteCount < 1) return "0% ";
+        const totalVotes = optionOne.votes.length + optionTwo.votes.length;
         const percentage = (currentOptionVoteCount / (totalVotes) * 100);
         return Math.round(percentage) + "%";
 
@@ -48,7 +48,6 @@ const AnswerQuestion = (props) => {
 
     const onValueChange = (event) =>{
           selected = event.target.value;
-          console.log(selected);
         };
 
     return (
@@ -81,15 +80,15 @@ const AnswerQuestion = (props) => {
                     <div>
                         <div>
                             <label> <b>Option1:</b> {optionOne.text} </label> {userAnswer === "optionOne" ? (<label> &#10003;</label>) : ""} <br />
-                            <label> <b>Vote Count:</b>  { (userAnswer === "optionOne") ? (optionOneVotes.votes.length + 1 ) : optionOneVotes.votes.length } </label><br />
-                            <label> <b>Vote Percentage: </b> {calculateVotePercentage((userAnswer === "optionOne") ? (optionOneVotes.votes.length + 1 ) : optionOneVotes.votes.length )} </label>
+                            <label> <b>Vote Count:</b>  { optionOneVotes.votes.length} </label><br />
+                            <label> <b>Vote Percentage: </b> {calculateVotePercentage(optionOneVotes.votes.length)} </label>
 
                         </div>
                         <br /><br />
                         <div>
                             <label><b>Option2:</b>  {optionTwo.text} </label> {userAnswer === "optionTwo" ? (<label> &#10003; </label>) : ""} <br />
-                            <label> <b>Vote Count:</b>  { (userAnswer === "optionTwo") ? (optionTwoVotes.votes.length + 1 ) : optionTwoVotes.votes.length }</label><br />
-                            <label><b>Vote Percentage: </b> {calculateVotePercentage((userAnswer === "optionTwo") ? (optionTwoVotes.votes.length + 1 ) : optionTwoVotes.votes.length )}</label>
+                            <label> <b>Vote Count:</b>  {  optionTwoVotes.votes.length }</label><br />
+                            <label><b>Vote Percentage: </b> {calculateVotePercentage(optionTwoVotes.votes.length)}</label>
                         </div>
                         <br /><br />
                         <img src={avatar} alt={name} height="40" width="50" />
