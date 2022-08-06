@@ -4,7 +4,7 @@ import "../stylesheets/homepage.css"
 import { useState } from "react";
 
 
-const Dashboard = (props) => {
+const Home = (props) => {
  
   const {authedUser, users, questions} = props;
   const questionList =  Object.keys(questions).sort((a, b) => questions[b].timestamp - questions[a].timestamp);
@@ -83,4 +83,4 @@ const mapStateToProps = ({ questions, authedUser, users }) => {
 }
 
 
-export default connect(mapStateToProps)(Dashboard)
+export default connect(mapStateToProps)(Home)

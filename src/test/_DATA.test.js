@@ -1,7 +1,7 @@
 import { _saveQuestion, _saveQuestionAnswer } from "../utils/_DATA";
 
 describe('saveQuestion', () =>{
-    it('will return question if question is successfully saved', async() =>{
+    it('will return saved question if question is successfully saved', async() =>{
         const optionOne = "Eat Out";
         const optionTwo = "Cook";
         const author="sarahedo";
