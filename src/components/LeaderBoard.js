@@ -20,17 +20,17 @@ return (
             <th>Created Polls</th>
           </tr>
           </thead>
+          <tbody>
           {usersList.map((user) => {
             return (
-              <tbody>
-              <tr key={user.id}>
+              <tr key={user.name}>
                 <td> <img src={user.avatarURL} alt={user.name} height="40" width="50"/>{user.name} </td>
                 <td>{Object.keys(user.answers).length}</td>
                 <td>{user.questions.length}</td>
               </tr>
-              </tbody>
             )
           })}
+          </tbody>
         </table>
       </div>
     )
