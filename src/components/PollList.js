@@ -1,5 +1,6 @@
 import { connect } from "react-redux"
 import { Link } from "react-router-dom"
+import PropTypes from 'prop-types';
 
  const formatQuestion = (question, author) =>{
     const {id, optionOne, optionTwo, timestamp, } = question;
@@ -47,6 +48,13 @@ const mapStateToProps = ({ authedUser, users, questions }, { id }) => {
                 formatQuestion(question, users[question.author]) : null,
         }
     )
+}
+
+Question.propTypes = {
+    link: PropTypes.string,
+    stateData:PropTypes.object,
+    avatar: PropTypes.string,
+    name: PropTypes.string,
 }
 
 export default connect(mapStateToProps)(Question)

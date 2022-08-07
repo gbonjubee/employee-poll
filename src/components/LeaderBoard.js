@@ -1,5 +1,6 @@
 import {connect} from "react-redux";
 import "../stylesheets/leaderboard.css"
+import PropTypes from 'prop-types';
 
 
 const Leaderboard = (props) => {
@@ -22,11 +23,12 @@ return (
           </thead>
           <tbody>
           {usersList.map((user) => {
+            const {id, avatarURL, name, answers , questions } = user;
             return (
-              <tr key={user.name}>
-                <td> <img src={user.avatarURL} alt={user.name} height="40" width="50"/>{user.name} </td>
-                <td>{Object.keys(user.answers).length}</td>
-                <td>{user.questions.length}</td>
+              <tr key={id}>
+                <td> <img src={avatarURL} alt={name} height="40" width="50"/>{name} </td>
+                <td>{Object.keys(answers).length}</td>
+                <td>{questions.length}</td>
               </tr>
             )
           })}
@@ -42,6 +44,15 @@ const mapStateToProps = ({users}) => {
             users
         }
     )
+}
+
+Leaderboard.propTypes = {
+  id: PropTypes.string,
+  avatarURL: PropTypes.string,
+  name: PropTypes.string,
+  answers: PropTypes.object,
+  questions: PropTypes.array
+
 }
 
 export default connect(mapStateToProps)(Leaderboard )

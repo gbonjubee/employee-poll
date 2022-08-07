@@ -15,7 +15,6 @@ const Login = (props) => {
 
 
 	const handleLogin = (e) => {
-	console.log(location);
 		e.preventDefault();
 		if (!e.target.username ||  ! e.target.password){
             setError(true);
