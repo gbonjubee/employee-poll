@@ -4,6 +4,7 @@ import { handleAnswerQuestion } from "../actions/questions";
 import { addUsersAnswer } from "../actions/users";
 import "../stylesheets/question.css"
 import { useState } from "react";
+import error404 from '../images/404.png'
 
 
 const AnswerQuestion = (props) => {
@@ -12,18 +13,24 @@ const AnswerQuestion = (props) => {
     const navigate = useNavigate();
     const { authedUser, users } = props
     const user = users[authedUser];
-    if(!location || !location.state || !location.state.currentQuestion) return;
+    if (!location.state){
+        return (
+            <div>
+                <h1>Page Not Found! The poll you are looking for does not exist.</h1>
+                <img src={error404} alt="error404" height="500" width ="700px"/>
+            </div>
+            )
+    }
     const currentQuestion = location.state.currentQuestion;
     const { question, id } = currentQuestion;
     const userAnswer = user.answers[id];
     const { optionOne, optionTwo, optionOneVotes, optionTwoVotes, name, avatar } = question;
-   
+
 
     const handleSubmit = (e) => {
         e.preventDefault();
-
         props.dispatch(addUsersAnswer({
-            authedUser :authedUser,
+            authedUser: authedUser,
             qid: id,
             answer: selected,
         }))
@@ -33,8 +40,8 @@ const AnswerQuestion = (props) => {
             answer: selected,
             authedUser: authedUser
         }))
-       alert(" Your answer has been successfully submitted ");
-       navigate("/");
+        alert(" Your answer has been successfully submitted ");
+        navigate("/");
 
     }
 
@@ -46,9 +53,9 @@ const AnswerQuestion = (props) => {
 
     }
 
-    const onValueChange = (event) =>{
-          selected = event.target.value;
-        };
+    const onValueChange = (event) => {
+        selected = event.target.value;
+    };
 
     return (
         <div>
@@ -63,7 +70,7 @@ const AnswerQuestion = (props) => {
                         </div>
                         <br /><br />
                         <div>
-                            <input type="radio" id="optionTwo" name="poll" value="optionTwo" onChange={onValueChange}  />
+                            <input type="radio" id="optionTwo" name="poll" value="optionTwo" onChange={onValueChange} />
                             <label> {optionTwo.text} </label>
                         </div>
                         <br /><br />
@@ -80,14 +87,14 @@ const AnswerQuestion = (props) => {
                     <div>
                         <div>
                             <label> <b>Option1:</b> {optionOne.text} </label> {userAnswer === "optionOne" ? (<label> &#10003;</label>) : ""} <br />
-                            <label> <b>Vote Count:</b>  { optionOneVotes.votes.length} </label><br />
+                            <label> <b>Vote Count:</b>  {optionOneVotes.votes.length} </label><br />
                             <label> <b>Vote Percentage: </b> {calculateVotePercentage(optionOneVotes.votes.length)} </label>
 
                         </div>
                         <br /><br />
                         <div>
                             <label><b>Option2:</b>  {optionTwo.text} </label> {userAnswer === "optionTwo" ? (<label> &#10003; </label>) : ""} <br />
-                            <label> <b>Vote Count:</b>  {  optionTwoVotes.votes.length }</label><br />
+                            <label> <b>Vote Count:</b>  {optionTwoVotes.votes.length}</label><br />
                             <label><b>Vote Percentage: </b> {calculateVotePercentage(optionTwoVotes.votes.length)}</label>
                         </div>
                         <br /><br />
