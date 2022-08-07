@@ -17,19 +17,17 @@ import { Link } from "react-router-dom"
 };
 
 const Question = (props) => {
-    const timestamp = props.question.timestamp
-    const name =props.question.name;
-    const avatarURL =props.question.avatar;
+    const {question:{timestamp, name, avatar }, id , question} = props
     const date = new Date(timestamp);
-    const link = `/questions/${props.id}`
+    const link = `/questions/${id}`
     const stateData =  {
-        id: props.id,
-        question: props.question,
+        id: id,
+        question: question,
     }
     
     return (
         <Link to={link} state={{ currentQuestion: stateData }}>
-            <img src={avatarURL} alt={name} height="40" width="50"/>
+            <img src={avatar} alt={name} height="40" width="50"/>
             <h4 data-testid="header-element">{name}</h4>
             <p data-testid="date-element">{"Date: " + date.getDate() +
                 "/" + (date.getMonth() + 1) +
