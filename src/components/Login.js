@@ -1,10 +1,12 @@
 import { connect } from "react-redux";
 import { handleUserLogin } from "../actions/authedUser";
 import "../stylesheets/style.css"
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import { useState } from "react";
 
 const Login = (props) => {
+    const location = useLocation();
+	const {pathname} = location;
     const [error, setError] = useState(false);
 	const { users } = props;
 	const navigate = useNavigate();
@@ -13,6 +15,7 @@ const Login = (props) => {
 
 
 	const handleLogin = (e) => {
+	console.log(location);
 		e.preventDefault();
 		if (!e.target.username ||  ! e.target.password){
             setError(true);
@@ -23,7 +26,7 @@ const Login = (props) => {
 		const user = users[username];
 		if (user && user.password === password) {
 		  props.dispatch(handleUserLogin(username));
-		  navigate("/");
+		  navigate(pathname === "/login" ? "/" : pathname);
 		} else{
 			setError(true);
             return;
@@ -33,7 +36,7 @@ const Login = (props) => {
 	const handleLoginAsExistingUser = (e) => {
 		e.preventDefault();
 		props.dispatch(handleUserLogin(e.target.value));
-		navigate("/");
+		navigate(pathname === "/login" ? "/" : pathname);
 	};
 
 	return (
